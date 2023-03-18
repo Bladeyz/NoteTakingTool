@@ -1,0 +1,45 @@
+TODO
+------------------------
+
+ - Write a method to add new notebook to the notebooks list
+ 	- Use some sort of pop-up to capture the information?
+ 	- Check that a note of the same name doesnt already exist
+ 		- May need a more general method to handle this at some point as will probably need to check if a note exists more than one to prevent it from being overwritten..
+
+ -
+
+
+NOTE TAKING APPLICATION
+
+Create a Notebook class that will hold groups of notes
+	- notebookID
+	- title
+	- archiveStatus
+	- List<Note> notes
+	- AddNote(string title, string notes) -- or just pass it a note object?
+	- ArchiveNote()
+
+Create a Note class
+	- noteID
+	- notebookID
+	- title
+	- notes
+	- archiveStatus
+
+serialise this object as JSON to give persistent storage
+
+
+Create a class to manage the tree view
+	- List<Notebook> notebooks
+	- LoadTree(string jsonLocation)
+		-- Do the initial load of the data from the json file
+	- ReturnNoteID(int treeIndex)
+		-- passes the details to the 
+
+
+-- ################
+
+1 0 
+2 1
+3 2
+4 3

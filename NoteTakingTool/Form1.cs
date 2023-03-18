@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,21 +17,28 @@ namespace NoteTakingTool
         {
             InitializeComponent();
             notebook = new Notebook();
+            treeViewManager = new TreeViewManager();
             currentNoteIndex = -1;
         }
 
         private Notebook notebook;
         private int currentNoteIndex;
+        private TreeViewManager treeViewManager;
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            notebook.LoadTestNotes(10);
+            //notebook.LoadTestNotes(10);
 
-            foreach(Note note in notebook)
-            {
-                NotebookTreeView.Nodes.Add(note.noteTitle);
-            }  
+            //foreach(Note note in notebook)
+            //{
+            //    NotebookTreeView.Nodes.Add(note.noteTitle);
+            //}
+            //treeViewManager.LoadTreeView(NotebookTreeView);#
+
+            treeViewManager.AddNewNotebook();
+
+            //treeViewManager.InputBox("lol", "this is a form");
         }
 
         private void NotebookTreeView_AfterSelect_1(object sender, TreeViewEventArgs e)
@@ -47,6 +55,13 @@ namespace NoteTakingTool
 
             currentNoteIndex = treeViewIndex;
             richTextBox1.Text = noteContent;
+        }
+
+        private void WriteCurrentNote_Button_Click(object sender, EventArgs e)
+        {
+            //notebook.WriteNotebookToJSON(notebook);
+            treeViewManager.LoadTreeView(NotebookTreeView);
+            //treeViewManager.LoadNotebooksFromFile("C:\\Users\\James\\Desktop\\noteshere");
         }
     }
 }

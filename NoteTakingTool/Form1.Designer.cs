@@ -31,6 +31,7 @@
             this.NotebookTreeView = new System.Windows.Forms.TreeView();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.WriteCurrentNote_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // NotebookTreeView
@@ -59,11 +60,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // WriteCurrentNote_Button
+            // 
+            this.WriteCurrentNote_Button.Location = new System.Drawing.Point(278, 542);
+            this.WriteCurrentNote_Button.Name = "WriteCurrentNote_Button";
+            this.WriteCurrentNote_Button.Size = new System.Drawing.Size(197, 50);
+            this.WriteCurrentNote_Button.TabIndex = 3;
+            this.WriteCurrentNote_Button.Text = "WriteCurrentNote";
+            this.WriteCurrentNote_Button.UseVisualStyleBackColor = true;
+            this.WriteCurrentNote_Button.Click += new System.EventHandler(this.WriteCurrentNote_Button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 601);
+            this.Controls.Add(this.WriteCurrentNote_Button);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.NotebookTreeView);
@@ -78,6 +90,7 @@
         private System.Windows.Forms.TreeView NotebookTreeView;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button WriteCurrentNote_Button;
     }
 }
 

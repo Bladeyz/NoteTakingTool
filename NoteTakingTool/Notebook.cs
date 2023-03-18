@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
+using System.Windows.Forms;
 
 namespace NoteTakingTool
 {
@@ -13,12 +16,14 @@ namespace NoteTakingTool
             notebookID = 1;
             notebookName = "Tester";
             notes = new List<Note>();
+            logicalFilePath = "C:/Users/James/Desktop/noteshere";
         }
 
         public int notebookID;
         public string notebookName;
         public List<Note> notes;
         public bool isArchived;
+        public string logicalFilePath;
 
         public void AddNote(string noteTitle, string noteContent)
         {
@@ -26,6 +31,7 @@ namespace NoteTakingTool
             Note note = new Note()
             {
                 noteID = noteID
+                , notebookID = notebookID
                 , noteTitle = noteTitle
                 , noteContent = noteContent
                 , isArchived = false
@@ -53,6 +59,25 @@ namespace NoteTakingTool
         public string ReturnNoteContents(int noteIndex)
         {
             return notes[noteIndex].noteContent;
+        }
+
+        public void WriteNotebookToJSON(Notebook notebook)
+        {
+            string jsonExport = JsonConvert.SerializeObject(notebook);
+
+            string filePath = Path.Combine(Environment.CurrentDirectory, @"NotebookFiles", notebook.notebookName, @".json");
+            try
+            {
+                using (StreamWriter writeJSON = new StreamWriter(filePath))
+                {
+                    writeJSON.WriteLine(jsonExport);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.StackTrace);
+            }
         }
     }
 }
