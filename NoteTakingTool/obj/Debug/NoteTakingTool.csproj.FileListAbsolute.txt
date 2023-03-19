@@ -1,6 +1,5 @@
 G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.AssemblyReference.cache
 G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.SuggestedBindingRedirects.cache
-G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.Form1.resources
 G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.Properties.Resources.resources
 G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.GenerateResource.cache
 G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.CoreCompileInputs.cache
@@ -12,3 +11,4 @@ G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.pdb
 G:\Code\C#\NoteTakingTool\NoteTakingTool\bin\Debug\Newtonsoft.Json.dll
 G:\Code\C#\NoteTakingTool\NoteTakingTool\bin\Debug\Newtonsoft.Json.xml
 G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.CopyComplete
+G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.NoteTakingTool.resources

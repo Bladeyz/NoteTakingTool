@@ -1,6 +1,6 @@
 ﻿namespace NoteTakingTool
 {
-    partial class Form1
+    partial class NoteTakingTool
     {
         /// <summary>
         /// Required designer variable.
@@ -32,6 +32,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.WriteCurrentNote_Button = new System.Windows.Forms.Button();
+            this.LoadNotes_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // NotebookTreeView
@@ -40,7 +41,8 @@
             this.NotebookTreeView.Name = "NotebookTreeView";
             this.NotebookTreeView.Size = new System.Drawing.Size(236, 514);
             this.NotebookTreeView.TabIndex = 0;
-            this.NotebookTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.NotebookTreeView_AfterSelect_1);
+            //this.NotebookTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.NotebookTreeView_AfterSelect);
+            this.NotebookTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NotebookTreeView_MouseDown);
             // 
             // richTextBox1
             // 
@@ -70,16 +72,28 @@
             this.WriteCurrentNote_Button.UseVisualStyleBackColor = true;
             this.WriteCurrentNote_Button.Click += new System.EventHandler(this.WriteCurrentNote_Button_Click);
             // 
-            // Form1
+            // LoadNotes_Button
             // 
+            this.LoadNotes_Button.Location = new System.Drawing.Point(504, 546);
+            this.LoadNotes_Button.Name = "LoadNotes_Button";
+            this.LoadNotes_Button.Size = new System.Drawing.Size(131, 45);
+            this.LoadNotes_Button.TabIndex = 4;
+            this.LoadNotes_Button.Text = "Load From File";
+            this.LoadNotes_Button.UseVisualStyleBackColor = true;
+            this.LoadNotes_Button.Click += new System.EventHandler(this.LoadNotes_Button_Click);
+            // 
+            // NoteTakingTool
+            // 
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NoteTakingTool_FormClosing);
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 601);
+            this.Controls.Add(this.LoadNotes_Button);
             this.Controls.Add(this.WriteCurrentNote_Button);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.NotebookTreeView);
-            this.Name = "Form1";
+            this.Name = "NoteTakingTool";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
@@ -91,6 +105,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button WriteCurrentNote_Button;
+        private System.Windows.Forms.Button LoadNotes_Button;
     }
 }
 
