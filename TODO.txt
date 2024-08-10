@@ -1,6 +1,16 @@
 TODO
 ------------------------
 
+2024 Notes!
+
+- Encrypt the JSON so it isn't stored in plain text!
+- Fix the sizing of the add new note button and give the button a proper name
+- Auto resizing of the elements on the screen when the form is resized
+
+
+
+
+
 
 
 NOTE TAKING APPLICATION
@@ -29,6 +39,7 @@ Create a class to manage the tree view
 		-- Do the initial load of the data from the json file
 	- ReturnNoteID(int treeIndex)
 		-- passes the details to the 
+
 
 
 -- ################

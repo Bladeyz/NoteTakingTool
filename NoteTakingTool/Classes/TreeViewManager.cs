@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace NoteTakingTool
@@ -47,23 +48,6 @@ namespace NoteTakingTool
             // can just have the code to create a note in here....
             AddNewNote();
         }
-        public void LoadNotebooksFromFile()
-        {
-            // Method to load all of the notebook JSON files from the directory in to memory
-
-            string path = Path.Combine(Environment.CurrentDirectory, @"NotebookFiles");
-            string[] NotebooksInDirectory = Directory.GetFiles(path);
-
-            foreach(string notebook in NotebooksInDirectory)
-            {
-                using(StreamReader reader = new StreamReader(notebook))
-                {
-                    string notebookJson = reader.ReadToEnd();
-                    notebooks.Add(JsonConvert.DeserializeObject<Notebook>(notebookJson));
-                }
-            }
-            LoadTreeView();
-        }
         public void LoadTreeView()
         {
             if(CheckTreeViewExists())
@@ -89,12 +73,29 @@ namespace NoteTakingTool
         {
             notebooks[notebookIndex].UpdateNoteContent(noteIndex, noteContent);
         }
-        public void WriteNotebooksToJSON()
+        public void WriteNotebooksToFile()
         {
-            foreach(Notebook notebook in notebooks)
+            foreach (Notebook notebook in notebooks)
             {
-                notebook.WriteNotebookToJSON();
+                notebook.WriteEncryptedNotbookToFile();
             }
+        }
+        public void LoadNotebooksFromFile()
+        {
+            // Method to load all of the notebook JSON files from the directory in to memory
+            string filePath = Path.Combine(Environment.CurrentDirectory, @"NotebookFiles");
+            string[] notebooksInDirectory = Directory.GetFiles(filePath);
+
+            foreach (string notebook in notebooksInDirectory)
+            {
+                byte[] loadedByte = File.ReadAllBytes(notebook);
+
+                string unprotectedJSON = Encoding.UTF8.GetString(DPAPI.UnprotectByte(loadedByte));
+
+                notebooks.Add(JsonConvert.DeserializeObject<Notebook>(unprotectedJSON));
+            }
+
+            LoadTreeView();
         }
         public void AddNewNotebook()
         {

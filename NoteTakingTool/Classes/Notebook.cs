@@ -44,17 +44,16 @@ namespace NoteTakingTool
         {
             notes[noteIndex].noteContent = noteContent;
         }
-        public void WriteNotebookToJSON()
+        public void WriteEncryptedNotbookToFile()
         {
             string jsonExport = JsonConvert.SerializeObject(this);
 
-            string filePath = Path.Combine(Environment.CurrentDirectory, @"NotebookFiles", String.Concat(notebookName, ".json"));
+            byte[] encryptedByte = DPAPI.ProtectByte(Encoding.UTF8.GetBytes(jsonExport));
+
+            string filePath = Path.Combine(Environment.CurrentDirectory, @"NotebookFiles", String.Concat(notebookName, ".dat"));
             try
             {
-                using (StreamWriter writeJSON = new StreamWriter(filePath))
-                {
-                    writeJSON.WriteLine(jsonExport);
-                }
+                File.WriteAllBytes(filePath, encryptedByte);
             }
             catch (Exception ex)
             {

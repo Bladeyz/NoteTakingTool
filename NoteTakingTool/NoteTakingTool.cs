@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,10 +21,14 @@ namespace NoteTakingTool
             treeViewManager = new TreeViewManager() { treeView = NotebookTreeView };
             activeNoteIndex = -1;
             activeNotebookIndex = -1;
+
+            encryptDecrypt = new EncryptDecrypt();
         }
 
         private int activeNoteIndex, activeNotebookIndex;
         private TreeViewManager treeViewManager;
+
+        private EncryptDecrypt encryptDecrypt;
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -82,11 +88,11 @@ namespace NoteTakingTool
         }
         private void WriteCurrentNote_Button_Click(object sender, EventArgs e)
         {
-            treeViewManager.WriteNotebooksToJSON();
+            treeViewManager.WriteNotebooksToFile();
         }
         private void NoteTakingTool_FormClosing(object sender, FormClosingEventArgs e)
         {
-            treeViewManager.WriteNotebooksToJSON();
+            treeViewManager.WriteNotebooksToFile();
         }
     }
 }

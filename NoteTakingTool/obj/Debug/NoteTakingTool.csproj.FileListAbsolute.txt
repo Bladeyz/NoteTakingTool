@@ -12,3 +12,16 @@ G:\Code\C#\NoteTakingTool\NoteTakingTool\bin\Debug\Newtonsoft.Json.dll
 G:\Code\C#\NoteTakingTool\NoteTakingTool\bin\Debug\Newtonsoft.Json.xml
 G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.CopyComplete
 G:\Code\C#\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.NoteTakingTool.resources
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\bin\Debug\NoteTakingTool.exe.config
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\bin\Debug\NoteTakingTool.exe
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\bin\Debug\NoteTakingTool.pdb
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\bin\Debug\Newtonsoft.Json.dll
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\bin\Debug\Newtonsoft.Json.xml
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.AssemblyReference.cache
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.NoteTakingTool.resources
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.Properties.Resources.resources
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.GenerateResource.cache
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.csproj.CoreCompileInputs.cache
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTaki.7827DB05.Up2Date
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.exe
+C:\Users\James\Documents\Code\Repos\NoteTakingTool\NoteTakingTool\obj\Debug\NoteTakingTool.pdb
