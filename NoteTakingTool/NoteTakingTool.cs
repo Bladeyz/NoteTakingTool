@@ -21,21 +21,15 @@ namespace NoteTakingTool
             treeViewManager = new TreeViewManager() { treeView = NotebookTreeView };
             activeNoteIndex = -1;
             activeNotebookIndex = -1;
-
-            encryptDecrypt = new EncryptDecrypt();
         }
 
         private int activeNoteIndex, activeNotebookIndex;
         private TreeViewManager treeViewManager;
 
-        private EncryptDecrypt encryptDecrypt;
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             treeViewManager.AddNewNotebook();
         }
-
         private void NotebookTreeView_MouseDown(object sender, MouseEventArgs e)
         {
             TreeNode selectedNode = NotebookTreeView.GetNodeAt(e.X, e.Y);
@@ -60,16 +54,14 @@ namespace NoteTakingTool
                 {
                     if(selectedNode.Parent != null)
                     {
+                        UpdateCurrentNote();
+
+                        // Return the note content for the selected node
                         int selectedNotebookIndex = selectedNode.Parent.Index;
                         int selectednoteIndex = selectedNode.Index;
                         string noteContent = treeViewManager.ReturnNoteContent(selectedNotebookIndex, selectednoteIndex);
 
-                        // if the active values are not -1 copy the current text back to the note it is related to
-                        if (activeNoteIndex != -1 & activeNotebookIndex != -1 && richTextBox1.Text != "")
-                        {
-                            treeViewManager.UpdateNoteContent(activeNotebookIndex, activeNoteIndex, richTextBox1.Text);
-                        }
-
+                        // Swap the active indexes to the newly clicked node and dispaly the text
                         activeNoteIndex = selectednoteIndex;
                         activeNotebookIndex = selectedNotebookIndex;
                         richTextBox1.Text = noteContent;
@@ -84,15 +76,27 @@ namespace NoteTakingTool
         //}
         private void LoadNotes_Button_Click(object sender, EventArgs e)
         {
+            UpdateCurrentNote();
             treeViewManager.LoadNotebooksFromFile();
         }
         private void WriteCurrentNote_Button_Click(object sender, EventArgs e)
         {
+            UpdateCurrentNote();
             treeViewManager.WriteNotebooksToFile();
         }
         private void NoteTakingTool_FormClosing(object sender, FormClosingEventArgs e)
         {
+            UpdateCurrentNote();
             treeViewManager.WriteNotebooksToFile();
+        }
+
+        private void UpdateCurrentNote()
+        {
+            // If there is a note currently active then save it before displaying the new note
+            if (activeNoteIndex != -1 & activeNotebookIndex != -1 && richTextBox1.Text != "")
+            {
+                treeViewManager.UpdateNoteContent(activeNotebookIndex, activeNoteIndex, richTextBox1.Text);
+            }
         }
     }
 }

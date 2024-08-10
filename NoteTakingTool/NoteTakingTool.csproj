@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DPAPI.cs" />
-    <Compile Include="Classes\EncryptDecrypt.cs" />
+    <Compile Include="Classes\Unused\EncryptDecrypt.cs" />
     <Compile Include="NoteTakingTool.cs">
       <SubType>Form</SubType>
     </Compile>

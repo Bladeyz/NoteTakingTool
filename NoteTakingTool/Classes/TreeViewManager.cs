@@ -88,11 +88,25 @@ namespace NoteTakingTool
 
             foreach (string notebook in notebooksInDirectory)
             {
+                // Read in the byte array, decrypt and convert back to a JSON string
                 byte[] loadedByte = File.ReadAllBytes(notebook);
-
                 string unprotectedJSON = Encoding.UTF8.GetString(DPAPI.UnprotectByte(loadedByte));
 
-                notebooks.Add(JsonConvert.DeserializeObject<Notebook>(unprotectedJSON));
+                Notebook loadedNotebook = JsonConvert.DeserializeObject<Notebook>(unprotectedJSON);
+
+                bool notebookExists = false;
+                foreach (Notebook notebooks in notebooks)
+                {
+                    if(loadedNotebook.notebookName == notebooks.notebookName)
+                    {
+                        notebookExists = true;
+                    }
+                }
+
+                if (!notebookExists)
+                {
+                    notebooks.Add(loadedNotebook);
+                }
             }
 
             LoadTreeView();
