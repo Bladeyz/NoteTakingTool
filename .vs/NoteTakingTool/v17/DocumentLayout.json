@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\notetakingtool\\notetakingtool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|solutionrelative:notetakingtool\\notetakingtool.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|c:\\users\\james\\documents\\code\\repos\\notetakingtool\\notetakingtool\\classes\\treeviewmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|solutionrelative:notetakingtool\\classes\\treeviewmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\notetakingtool\\classes\\dpapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|solutionrelative:notetakingtool\\classes\\dpapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\notetakingtool\\classes\\notebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|solutionrelative:notetakingtool\\classes\\notebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\notetakingtool\\todo.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{064FD33D-54CC-4719-98CC-E756D970353D}|NoteTakingTool\\NoteTakingTool.csproj|solutionrelative:notetakingtool\\todo.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 348,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TODO.txt",
+              "DocumentMoniker": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\TODO.txt",
+              "RelativeDocumentMoniker": "NoteTakingTool\\TODO.txt",
+              "ToolTip": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\TODO.txt",
+              "RelativeToolTip": "NoteTakingTool\\TODO.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-08-10T22:17:26.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NoteTakingTool.cs",
+              "DocumentMoniker": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\NoteTakingTool.cs",
+              "RelativeDocumentMoniker": "NoteTakingTool\\NoteTakingTool.cs",
+              "ToolTip": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\NoteTakingTool.cs",
+              "RelativeToolTip": "NoteTakingTool\\NoteTakingTool.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAA1wDcAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T22:09:51.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TreeViewManager.cs",
+              "DocumentMoniker": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\Classes\\TreeViewManager.cs",
+              "RelativeDocumentMoniker": "NoteTakingTool\\Classes\\TreeViewManager.cs",
+              "ToolTip": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\Classes\\TreeViewManager.cs",
+              "RelativeToolTip": "NoteTakingTool\\Classes\\TreeViewManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD0AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T22:05:06.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DPAPI.cs",
+              "DocumentMoniker": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\Classes\\DPAPI.cs",
+              "RelativeDocumentMoniker": "NoteTakingTool\\Classes\\DPAPI.cs",
+              "ToolTip": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\Classes\\DPAPI.cs",
+              "RelativeToolTip": "NoteTakingTool\\Classes\\DPAPI.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABkAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T22:00:29.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Notebook.cs",
+              "DocumentMoniker": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\Classes\\Notebook.cs",
+              "RelativeDocumentMoniker": "NoteTakingTool\\Classes\\Notebook.cs",
+              "ToolTip": "C:\\Users\\James\\Documents\\Code\\Repos\\NoteTakingTool\\NoteTakingTool\\Classes\\Notebook.cs",
+              "RelativeToolTip": "NoteTakingTool\\Classes\\Notebook.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwC0AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T21:59:16.965Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

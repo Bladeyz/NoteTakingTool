@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,43 +11,56 @@ namespace NoteTakingTool
 {
     internal class TreeViewManager
     {
-        internal TreeViewManager()
-        {
-            notebooks = new List<Notebook>();
-            treeView = new TreeView();
-            treeViewContextMenuStrip = new ContextMenuStrip();
-
-            InitialiseContextMenuStrip();
-        }
-
         private List<Notebook> notebooks;
         public TreeView treeView;
         private ContextMenuStrip treeViewContextMenuStrip;
-        private int currentContextMenuNodeIndex;
+        private int activeNoteIndex, activeNotebookIndex, selectedNoteIndex, selectedNotebookIndex;
+
+
+        internal TreeViewManager()
+        {
+            activeNoteIndex = -1;
+            activeNotebookIndex = -1;
+            selectedNoteIndex = -1;
+            selectedNotebookIndex = -1;
+            notebooks = new List<Notebook>();
+            treeView = new TreeView();
+            treeViewContextMenuStrip = new ContextMenuStrip();
+            InitialiseContextMenuStrip();
+        }
 
         private void InitialiseContextMenuStrip()
         {
             ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
+
             ToolStripMenuItem addNewNote = new ToolStripMenuItem();
             addNewNote.Text = "Add new note";
-
             addNewNote.Click += new EventHandler(ContextMenu_AddNote);
 
+            ToolStripMenuItem deleteNote = new ToolStripMenuItem();
+            deleteNote.Text = "Delete selected note";
+            deleteNote.Click += new EventHandler(ContextMenu_DeleteSelectedNote);
 
             contextMenuStrip.Items.Add(addNewNote);
+            contextMenuStrip.Items.Add(deleteNote);
 
             treeViewContextMenuStrip = contextMenuStrip;
         }
-        public void ShowContextMenuStrip(int nodeIndex)
+        public void ShowContextMenuStrip()
         {
-            currentContextMenuNodeIndex = nodeIndex;
             treeView.ContextMenuStrip = treeViewContextMenuStrip;
         }
         public void ContextMenu_AddNote(object sender, EventArgs e)
         {
-            // TODO: This might be redundant?
-            // can just have the code to create a note in here....
             AddNewNote();
+        }
+        public void ContextMenu_DeleteSelectedNote(object sender, EventArgs e)
+        {
+            if (CheckNoteSelected())
+            {
+                notebooks[selectedNotebookIndex].DeleteNote(selectedNoteIndex);
+                LoadTreeView();
+            }
         }
         public void LoadTreeView()
         {
@@ -69,15 +83,26 @@ namespace NoteTakingTool
         {
             return notebooks[notebookIndex].ReturnNoteContent(noteIndex);
         }
+        public string ReturnActiveNoteContent()
+        {
+            return notebooks[activeNotebookIndex].ReturnNoteContent(activeNoteIndex);
+        }
         public void UpdateNoteContent(int notebookIndex, int noteIndex, string noteContent)
         {
             notebooks[notebookIndex].UpdateNoteContent(noteIndex, noteContent);
+        }
+        public void UpdateActiveNoteContent(string noteContent)
+        {
+            if (CheckNoteActive())
+            {
+                notebooks[activeNotebookIndex].UpdateNoteContent(activeNoteIndex, noteContent);
+            }
         }
         public void WriteNotebooksToFile()
         {
             foreach (Notebook notebook in notebooks)
             {
-                notebook.WriteEncryptedNotbookToFile();
+                notebook.WriteEncryptedNotebookToFile();
             }
         }
         public void LoadNotebooksFromFile()
@@ -136,12 +161,11 @@ namespace NoteTakingTool
         public void AddNewNote()
         {
             string noteTitle = "";
-            string noteContent = "";
-            DialogResult dialogResult = NewNoteDialog("Add New Note", ref noteTitle, ref noteContent);
+            DialogResult dialogResult = NewNoteDialog("Add New Note", ref noteTitle);
 
-            if(dialogResult == DialogResult.OK && noteTitle != "" && noteContent != "")
+            if(dialogResult == DialogResult.OK && noteTitle != "")
             {
-                notebooks[currentContextMenuNodeIndex].AddNote(noteTitle, noteContent);
+                notebooks[selectedNotebookIndex].AddNote(noteTitle);
                 LoadTreeView();
             }
         }
@@ -183,35 +207,38 @@ namespace NoteTakingTool
 
             return result;
         }
-        private DialogResult NewNoteDialog(string formTitle, ref string noteTitle, ref string noteContent)
+        private DialogResult NewNoteDialog(string formTitle, ref string noteTitle)
         {
-            // this is an example of how to create a dialog popup and pass values back
-            // tutorial used: https://www.makeuseof.com/winforms-input-dialog-box-create-display/
+            // This is an example of how to create a dialog popup and pass values back
+            // Tutorial used: https://www.makeuseof.com/winforms-input-dialog-box-create-display/
 
             Form form = new Form();
             form.Text = formTitle;
-            TextBox noteTitleTextBox = new TextBox();
-            TextBox noteContentTextBox = new TextBox();
+            form.Size = new Size(338, 130);
+            form.StartPosition = FormStartPosition.CenterScreen;
 
-            // The dialog result is what is returned when the button is pressed
+            // Create each of the on screen objects and set properties
+            Label noteTitleLabel = new Label();
+            noteTitleLabel.Text = "Note Title:";
+            noteTitleLabel.SetBounds(1, 5, 60, 20);
+
+            TextBox noteTitleTextBox = new TextBox();
+            noteTitleTextBox.SetBounds(61, 5, 258, 20);
+
             Button buttonOk = new Button();
             buttonOk.DialogResult = DialogResult.OK;
             buttonOk.Text = "Create new note";
+            buttonOk.SetBounds(1, 30, 160, 60);
 
             Button buttonCancel = new Button();
             buttonCancel.DialogResult = DialogResult.Cancel;
             buttonCancel.Text = "Cancel note creation";
+            buttonCancel.SetBounds(161, 30, 160, 60);
 
-            // set the size & location of the items on the screen
-            noteTitleTextBox.SetBounds(36, 86, 700, 20);
-            noteContentTextBox.SetBounds(36, 110, 700, 20);
-            buttonOk.SetBounds(228, 160, 160, 60);
-            buttonCancel.SetBounds(228, 360, 160, 60);
+            // Add each of the controls we have defined to the form
+            form.Controls.AddRange(new Control[] { noteTitleTextBox, noteTitleLabel, buttonOk, buttonCancel });
 
-            // add each of the controls we have defined to the form
-            form.Controls.AddRange(new Control[] { noteTitleTextBox, noteContentTextBox, buttonOk, buttonCancel });
-
-            // bind the accept/cancel on the form to the created buttons
+            // Bind the accept/cancel on the form to the created buttons
             form.AcceptButton = buttonOk;
             form.CancelButton = buttonCancel;
 
@@ -220,15 +247,9 @@ namespace NoteTakingTool
 
             // set he textbox value on the screen to a variable so we can pass it back
             noteTitle = noteTitleTextBox.Text;
-            noteContent = noteContentTextBox.Text;
 
             return result;
         }
-
-        /// <summary>
-        ///  Returns true if the treeView object of TreeViewManager is not null
-        /// </summary>
-        /// <returns>bool</returns>
         private bool CheckTreeViewExists()
         {
             bool treeViewStatus = treeView != null ? true : false;
@@ -241,6 +262,39 @@ namespace NoteTakingTool
             {
                 MessageBox.Show("treeView not correctly initialised");
                 return false;
+            }
+        }
+        public void SetActiveNotebookIndexes(int notebookIndex = -1, int noteIndex = -1)
+        {
+            activeNotebookIndex = notebookIndex;
+            activeNoteIndex = noteIndex;
+            SetSelectedNotebookIndexes(notebookIndex, noteIndex);
+        }
+        public void SetSelectedNotebookIndexes(int notebookIndex = -1, int noteIndex = -1)
+        {
+            selectedNotebookIndex = notebookIndex;
+            selectedNoteIndex = noteIndex;
+        }
+        public bool CheckNoteActive()
+        {
+            if (activeNotebookIndex == -1 || activeNoteIndex == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool CheckNoteSelected()
+        {
+            if (selectedNotebookIndex == -1 || selectedNoteIndex == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

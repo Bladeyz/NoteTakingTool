@@ -15,18 +15,16 @@ namespace NoteTakingTool
 {
     public partial class NoteTakingTool : Form
     {
+        private TreeViewManager treeViewManager;
+
         public NoteTakingTool()
         {
             InitializeComponent();
             treeViewManager = new TreeViewManager() { treeView = NotebookTreeView };
-            activeNoteIndex = -1;
-            activeNotebookIndex = -1;
+            treeViewManager.LoadNotebooksFromFile();
         }
 
-        private int activeNoteIndex, activeNotebookIndex;
-        private TreeViewManager treeViewManager;
-
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             treeViewManager.AddNewNotebook();
         }
@@ -36,67 +34,52 @@ namespace NoteTakingTool
 
             if (selectedNode != null)
             {
+                // Set the selected indexes. If a child node is selected then return the index of the parent for the notebook.
+                int selectedNotebook = selectedNode.Parent is null ? selectedNode.Index : selectedNode.Parent.Index;
+                int selectedNote = selectedNode.Parent is null ? -1 : selectedNode.Index;
+                treeViewManager.SetSelectedNotebookIndexes(selectedNotebook, selectedNote);
+
                 if (e.Button == MouseButtons.Right)
                 {
                     NotebookTreeView.SelectedNode = selectedNode;
-
-                    // if parent is not null we are on a child node, so return the parents index
-                    if(selectedNode.Parent != null)
-                    {
-                        treeViewManager.ShowContextMenuStrip(selectedNode.Parent.Index);
-                    }
-                    else
-                    {
-                        treeViewManager.ShowContextMenuStrip(selectedNode.Index);
-                    }
+                    treeViewManager.ShowContextMenuStrip();
                 }
-                else if(e.Button == MouseButtons.Left)
+                else if (e.Button == MouseButtons.Left)
                 {
-                    if(selectedNode.Parent != null)
+                    if (selectedNode.Parent != null)
                     {
-                        UpdateCurrentNote();
+                        UpdateActiveNote();
+                        treeViewManager.SetActiveNotebookIndexes(selectedNotebook, selectedNote);
 
-                        // Return the note content for the selected node
-                        int selectedNotebookIndex = selectedNode.Parent.Index;
-                        int selectednoteIndex = selectedNode.Index;
-                        string noteContent = treeViewManager.ReturnNoteContent(selectedNotebookIndex, selectednoteIndex);
+                        string noteContent = treeViewManager.ReturnActiveNoteContent();
 
-                        // Swap the active indexes to the newly clicked node and dispaly the text
-                        activeNoteIndex = selectednoteIndex;
-                        activeNotebookIndex = selectedNotebookIndex;
                         richTextBox1.Text = noteContent;
                     }
                 }
             }
         }
-
         //private void NotebookTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         //{
 
         //}
         private void LoadNotes_Button_Click(object sender, EventArgs e)
         {
-            UpdateCurrentNote();
+            UpdateActiveNote();
             treeViewManager.LoadNotebooksFromFile();
         }
         private void WriteCurrentNote_Button_Click(object sender, EventArgs e)
         {
-            UpdateCurrentNote();
+            UpdateActiveNote();
             treeViewManager.WriteNotebooksToFile();
         }
         private void NoteTakingTool_FormClosing(object sender, FormClosingEventArgs e)
         {
-            UpdateCurrentNote();
+            UpdateActiveNote();
             treeViewManager.WriteNotebooksToFile();
         }
-
-        private void UpdateCurrentNote()
+        private void UpdateActiveNote()
         {
-            // If there is a note currently active then save it before displaying the new note
-            if (activeNoteIndex != -1 & activeNotebookIndex != -1 && richTextBox1.Text != "")
-            {
-                treeViewManager.UpdateNoteContent(activeNotebookIndex, activeNoteIndex, richTextBox1.Text);
-            }
+            treeViewManager.UpdateActiveNoteContent(richTextBox1.Text);
         }
     }
 }

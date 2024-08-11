@@ -1,0 +1,6 @@
+TODO:
+
+-- Add the ability to delete / archive a note or notebook
+-- When a new note is added it should be opened as the current note
+-- Make it so the tree view doesnt collapse when adding a new note
+-- 

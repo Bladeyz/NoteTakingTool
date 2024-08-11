@@ -11,19 +11,20 @@ namespace NoteTakingTool
 {
     internal class Notebook
     {
-        internal Notebook()
-        {
-            notebookID = 1;
-            notebookName = "Tester";
-            notes = new List<Note>();
-        }
-
         public int notebookID;
         public string notebookName;
         public List<Note> notes;
         public bool isArchived;
 
-        public void AddNote(string noteTitle, string noteContent)
+        internal Notebook()
+        {
+            notebookID = 1;
+            notebookName = "Tester";
+            notes = new List<Note>();
+            isArchived = false;
+        }
+
+        public void AddNote(string noteTitle)
         {
             int noteID = notes.Count();
             Note note = new Note()
@@ -31,7 +32,7 @@ namespace NoteTakingTool
                 noteID = noteID
                 , notebookID = notebookID
                 , noteTitle = noteTitle
-                , noteContent = noteContent
+                , noteContent = null
                 , isArchived = false
             };
             notes.Add(note);
@@ -44,7 +45,11 @@ namespace NoteTakingTool
         {
             notes[noteIndex].noteContent = noteContent;
         }
-        public void WriteEncryptedNotbookToFile()
+        public void DeleteNote(int noteIndex)
+        {
+            notes.RemoveAt(noteIndex);
+        }
+        public void WriteEncryptedNotebookToFile()
         {
             string jsonExport = JsonConvert.SerializeObject(this);
 
@@ -67,7 +72,7 @@ namespace NoteTakingTool
             {
                 string noteTitle = String.Format("NoteTitle:{0}", notes.Count());
                 string noteContent = String.Format("NoteContents:{0}", notes.Count());
-                AddNote(noteTitle, noteContent);
+                AddNote(noteTitle);
             }
         }
         public IEnumerator<Note> GetEnumerator()
