@@ -59,7 +59,7 @@ namespace NoteTakingTool
             if (CheckNoteSelected())
             {
                 notebooks[selectedNotebookIndex].DeleteNote(selectedNoteIndex);
-                LoadTreeView();
+                RemoveSelectedNoteFromTreeView();
             }
         }
         public void LoadTreeView()
@@ -79,13 +79,29 @@ namespace NoteTakingTool
                 }
             }
         }
+        public void RemoveSelectedNoteFromTreeView()
+        {
+            if (CheckNoteSelected())
+            {
+                treeView.Nodes[selectedNotebookIndex].Nodes[selectedNoteIndex].Remove();
+                selectedNoteIndex = -1;
+                activeNoteIndex = -1;
+            }
+        }
         public string ReturnNoteContent(int notebookIndex, int noteIndex)
         {
             return notebooks[notebookIndex].ReturnNoteContent(noteIndex);
         }
         public string ReturnActiveNoteContent()
         {
-            return notebooks[activeNotebookIndex].ReturnNoteContent(activeNoteIndex);
+            if (CheckNoteActive())
+            {
+                return notebooks[activeNotebookIndex].ReturnNoteContent(activeNoteIndex);
+            }
+            else
+            {
+                return null;
+            }
         }
         public void UpdateNoteContent(int notebookIndex, int noteIndex, string noteContent)
         {
@@ -166,7 +182,11 @@ namespace NoteTakingTool
             if(dialogResult == DialogResult.OK && noteTitle != "")
             {
                 notebooks[selectedNotebookIndex].AddNote(noteTitle);
-                LoadTreeView();
+                treeView.Nodes[selectedNotebookIndex].Nodes.Add(noteTitle);
+
+                int newNodeIndex = treeView.Nodes[selectedNotebookIndex].Nodes.Count - 1;
+
+                treeView.SelectedNode = treeView.Nodes[selectedNotebookIndex].Nodes[newNodeIndex];
             }
         }
         private DialogResult NewNotebookDialog(string title, ref string formName)
